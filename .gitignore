@@ -26,3 +26,10 @@
 *.exe
 *.out
 *.app
+##########################################################
+#Clion files
+##########################################################
+.idea/3DTetris.iml
+.idea/modules.xml
+.idea/workspace.xml
+cmake-build-debug/

@@ -1,7 +1,7 @@
-//#include <GL/gl.h>		   // Open Graphics Library (OpenGL) header
-//#include <GL/glut.h>	   // The GL Utility Toolkit (GLUT) Header
-//#include <GL/glu.h>
-//#include "cube.h"
+#include <GL/gl.h>		   // Open Graphics Library (OpenGL) header
+#include <GL/glut.h>	   // The GL Utility Toolkit (GLUT) Header
+#include <GL/glu.h>
+#include "cube.h"
 
 #include <iostream>
 #include <list>
@@ -1516,19 +1516,23 @@ void specialFunc(int key, int x, int y) {
 	glutPostRedisplay();
 }
 
-int main(int argc, char **argv) {
-	glutInit(&argc, argv);                                                    // GLUT initialization
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);                    // Display Mode
-	glutInitWindowPosition(100, 250);
-	glutInitWindowSize(600, 600);                                                // set window size
-	glutCreateWindow("Cube Constructor - 3D");                                    // create Window
+void run(int &argc,char **argv);
 
-	init();
-	glutDisplayFunc(display);                                                    // register Display Function
-	glutKeyboardFunc(keyboardFunc);
-	glutSpecialFunc(specialFunc);
-	glutMainLoop();                                                                // run GLUT mainloop
-	//TODO edo mpainei mono h run(). Ola ta alla mpainoyn se klaseis
-	
+int main(int argc, char **argv) {
+	run(argc, argv);
 	return 0;
+}
+void run(int &argc,char **argv) {
+    glutInit(&argc, argv);                                                    // GLUT initialization
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);                    // Display Mode
+    glutInitWindowPosition(100, 250);
+    glutInitWindowSize(600, 600);                                                // set window size
+    glutCreateWindow("Cube Constructor - 3D");                                    // create Window
+
+    init();
+    glutDisplayFunc(display);                                                    // register Display Function
+    glutKeyboardFunc(keyboardFunc);
+    glutSpecialFunc(specialFunc);
+    //glutFullScreen();                                                             //Fullscreen Display
+    glutMainLoop();                                                                // run GLUT mainloop
 }

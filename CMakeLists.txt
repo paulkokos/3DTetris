@@ -3,7 +3,7 @@ project(3DTetris)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES main.cpp cube.cpp cube.h Functions.cpp Functions.h UI.cpp UI.h)
+set(SOURCE_FILES main.cpp cube.cpp cube.h Functions.cpp Functions.h UI.cpp UI.h Glut.h Window.cpp Window.h Graph.cpp Graph.h)
 add_executable(3DTetris ${SOURCE_FILES})
 
 

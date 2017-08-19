@@ -7,6 +7,16 @@
 
 
 class Window {
+private:
+
+
+protected:
+
+
+public:
+
+
+
 
 };
 

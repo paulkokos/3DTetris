@@ -7,6 +7,12 @@
 
 
 class Graph {
+private:
+
+
+protected:
+
+public:
 
 };
 

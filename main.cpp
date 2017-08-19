@@ -1,4 +1,5 @@
 #include "Glut.h"
+#include "Generator.h"
 
 using namespace std;
 
@@ -65,26 +66,26 @@ int SCORE=0;
 /*=============================================================================
 Generate random numbers from x to y
 =============================================================================*/
-int generateNum() {
-	srand(static_cast<unsigned int>(time(NULL)));
-	int num;
-	num = 1 + (rand() % 3);
-	return num;
-}
-
-int randPosX() {
-	int num;
-	srand(static_cast<unsigned int>(time(NULL) + 10));
-	num = 0 + (rand() % 15);
-	return num;
-}
-
-int randPosY() {
-	int num;
-	srand(static_cast<unsigned int>(time(NULL) + 20));
-	num = 0 + (rand() % 15);
-	return num;
-}
+//int generateNum() {
+//	srand(static_cast<unsigned int>(time(NULL)));
+//	int num;
+//	num = 1 + (rand() % 3);
+//	return num;
+//}
+//
+//int randPosX() {
+//	int num;
+//	srand(static_cast<unsigned int>(time(NULL) + 10));
+//	num = 0 + (rand() % 15);
+//	return num;
+//}
+//
+//int randPosY() {
+//	int num;
+//	srand(static_cast<unsigned int>(time(NULL) + 20));
+//	num = 0 + (rand() % 15);
+//	return num;
+//}
 
 /*=============================================================================
 Lunch time!
@@ -1107,9 +1108,9 @@ void moveDown(int value) {
 			storeCube();
 			eat();
 			indexZ = 15;
-			indexX = randPosX();
-			indexY = randPosY();
-			randNum = generateNum();
+			indexX = Generator::randPosX();
+			indexY = Generator::randPosY();
+			randNum = Generator::generateNum();
 		}
 		glutPostRedisplay();
 	}

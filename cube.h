@@ -9,7 +9,7 @@
 class cube {
 private:
     int colour;
-    int posX, posY, posZ;
+    int positionX, positionY, positionZ;
     int active;
     int loaded;
     int Scored;

@@ -10,39 +10,63 @@ cube::cube() {
     loaded = 0;
 }
 
-void cube::setColour(int randNum) { colour = randNum; }
+void cube::setColour(int randNum) {
+    colour = randNum;
+}
 
 void cube::setPos(int indexX, int indexY, int indexZ) {
-    posX = indexX;
-    posY = indexY;
-    posZ = indexZ;
+    positionX = indexX;
+    positionY = indexY;
+    positionZ = indexZ;
 }
 
 void cube::movePos(int x, int y, int z) {
-    posX = x;
-    posY = y;
-    posZ = z;
+    positionX = x;
+    positionY = y;
+    positionZ = z;
 }
 
-void cube::moveColour(int c) { colour = c; }
+void cube::moveColour(int c) {
+    colour = c;
+}
 
-int cube::getPosX() { return posX; }
+int cube::getPosX() {
+    return positionX;
+}
 
-int cube::getPosY() { return posY; }
+int cube::getPosY() {
+    return positionY;
+}
 
-int cube::getPosZ() { return posZ; }
+int cube::getPosZ() {
+    return positionZ;
+}
 
-void cube::setActive(int a) { active = a; }
+void cube::setActive(int a) {
+    active = a;
+}
 
-void cube::setLoaded(int b) { loaded = b; }
+void cube::setLoaded(int b) {
+    loaded = b;
+}
 
-int cube::getLoaded() { return loaded; }
+int cube::getLoaded() {
+    return loaded;
+}
 
-void cube::setScored(int b) { Scored = b; }
+void cube::setScored(int b) {
+    Scored = b;
+}
 
-int cube::getScored() { return Scored; }
+int cube::getScored() {
+    return Scored;
+}
 
-int cube::getActive() { return active; }
+int cube::getActive() {
+    return active;
+}
 
-int cube::getColour() { return colour; }
+int cube::getColour() {
+    return colour;
+}
 

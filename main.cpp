@@ -63,9 +63,7 @@ int cubeNum=0;
 int SCORE=0;
 
 
-/*=============================================================================
-Generate random numbers from x to y
-=============================================================================*/
+
 //int generateNum() {
 //	srand(static_cast<unsigned int>(time(NULL)));
 //	int num;
@@ -555,7 +553,7 @@ void loadNeighbours(int x, int y, int z, int c) {
 }
 
 /*==============================================================================
-Move the selected cube to the acording position
+Move the selected cube to the according position
 ==============================================================================*/
 void moveCube() {
 	int axisChoice;
@@ -1516,9 +1514,14 @@ int main(int argc, char **argv) {
 	run(argc, argv);
 	return 0;
 }
+void drawBitmapText(char* string, float x, float y, float z);
 void run(int &argc,char **argv) {
+	std::string string = "Hello World!";
+
+
     glutInit(&argc, argv);                                                    // GLUT initialization
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);                    // Display Mode
+	drawBitmapText(const_cast<char *>("Hello"), 0, 0, 0);
+	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);                    // Display Mode
     glutInitWindowPosition(100, 250);
     glutInitWindowSize(600, 600);                                                // set window size
     glutCreateWindow("Cube Constructor - 3D");                                    // create Window
@@ -1529,4 +1532,13 @@ void run(int &argc,char **argv) {
     glutSpecialFunc(specialFunc);
     //glutFullScreen();                                                             //Fullscreen Display
     glutMainLoop();                                                                // run GLUT mainloop
+}
+void drawBitmapText(char* string, float x, float y, float z) {
+
+	char* c;
+	glRasterPos3f(x, y, z);
+
+	for (c = string; *c; ++c) {
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, *c);
+	}
 }

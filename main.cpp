@@ -1480,7 +1480,7 @@ void keyboardFunc(GLubyte key, GLint xMouse, GLint yMouse) {
 	}
 	glutPostRedisplay();
 }
-void specialFunc(int key, int x, int y) {
+void specialFunc(int key, int x= NULL, int y= NULL) {
 	switch (key) {
 		case GLUT_KEY_RIGHT:
 			if ((indexX > 0) && (Vertex[indexX - 1][indexY][indexZ].getActive() == 0) && (PAUSE == 0)) {

@@ -2,71 +2,70 @@
 // Created by paulkokos on 8/15/17.
 //
 
-#include "cube.h"
+#include "Cube.h"
 
 
-cube::cube() {
+Cube::Cube() {
     active = 0;
     loaded = 0;
 }
 
-void cube::setColour(int randNum) {
+void Cube::setColour(int randNum) {
     colour = randNum;
 }
 
-void cube::setPos(int indexX, int indexY, int indexZ) {
+void Cube::setPos(int indexX, int indexY, int indexZ) {
     positionX = indexX;
     positionY = indexY;
     positionZ = indexZ;
 }
 
-void cube::movePos(int x, int y, int z) {
+void Cube::movePos(int x, int y, int z) {
     positionX = x;
     positionY = y;
     positionZ = z;
 }
 
-void cube::moveColour(int c) {
+void Cube::moveColour(int c) {
     colour = c;
 }
 
-int cube::getPosX() {
+int Cube::getPosX() {
     return positionX;
 }
 
-int cube::getPosY() {
+int Cube::getPosY() {
     return positionY;
 }
 
-int cube::getPosZ() {
+int Cube::getPosZ() {
     return positionZ;
 }
 
-void cube::setActive(int a) {
+void Cube::setActive(int a) {
     active = a;
 }
 
-void cube::setLoaded(int b) {
+void Cube::setLoaded(int b) {
     loaded = b;
 }
 
-int cube::getLoaded() {
+int Cube::getLoaded() {
     return loaded;
 }
 
-void cube::setScored(int b) {
+void Cube::setScored(int b) {
     Scored = b;
 }
 
-int cube::getScored() {
+int Cube::getScored() {
     return Scored;
 }
 
-int cube::getActive() {
+int Cube::getActive() {
     return active;
 }
 
-int cube::getColour() {
+int Cube::getColour() {
     return colour;
 }
-

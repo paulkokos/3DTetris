@@ -1,5 +1,12 @@
+#include <algorithm>
+#include <map>
 #include "Glut.h"
 #include "Generator.h"
+#include "KeyboardCommands.h"
+
+///@brief
+///@param aaa
+///@return
 
 using namespace std;
 
@@ -8,32 +15,23 @@ Global variables
 =============================================================================*/
 
 /* Neighbours stored here */
-list<cube> myL;
-
+list<Cube> myL;
 /* Basic array with all objects */
-cube Vertex[15][15][15];
+Cube Vertex[15][15][15];
 
 /* Camera Eye */
 int eyeX = 30;
 int eyeY = 30;
 int eyeZ = 30;
 
-int CamFlag = 0;
 
 /* Current cube positions */
 int indexX=0;
 int indexY=0;
 int indexZ=15;
 
-/* Camera angles */
-float angleX = 0.0;
-float angleY = 0.0;
-float angleZ = 0.0;
 
-/* selected cube coordinates */
-int selectX = 0;
-int selectY = 0;
-int selectZ = 0;
+
 
 /* random number from 1 to 3 */
 int randNum=1;
@@ -43,15 +41,13 @@ GLfloat lightPos[] = { 16, 16, 16, 1.0f };
 GLfloat whiteLight[] = { 0.2f, 0.2f, 0.2f, 0.2f };
 GLfloat sourceLight[] = { 0.8f, 0.8f, 0.8f, 1.0f };
 
-int alreadyMoved=0;
-int listDisplayed =0;
+
 int displayCount = 0;
 
 /* pause */
-int PAUSE = 1;
+
 int gg=0;
-/* later */
-int START=1;
+
 
 int flag=0;
 
@@ -60,30 +56,10 @@ int camFlag=0;
 /* Overall objects */
 int cubeNum=0;
 
-int SCORE=0;
 
 
 
-//int generateNum() {
-//	srand(static_cast<unsigned int>(time(NULL)));
-//	int num;
-//	num = 1 + (rand() % 3);
-//	return num;
-//}
-//
-//int randPosX() {
-//	int num;
-//	srand(static_cast<unsigned int>(time(NULL) + 10));
-//	num = 0 + (rand() % 15);
-//	return num;
-//}
-//
-//int randPosY() {
-//	int num;
-//	srand(static_cast<unsigned int>(time(NULL) + 20));
-//	num = 0 + (rand() % 15);
-//	return num;
-//}
+
 
 /*=============================================================================
 Lunch time!
@@ -568,7 +544,7 @@ void moveCube() {
 	cout << "How far you wnat to move the bloody cube?" << endl;
 	cin >> farChoice;
 
-	list<cube>::iterator it;
+	list<Cube>::iterator it;
 	for (it = myL.begin(); it != myL.end(); ++it) {
 		mX = (*it).getPosX();
 		mY = (*it).getPosY();
@@ -653,7 +629,7 @@ void rotateCube() {
 	int moveFlag = 0;
 	int rotX = 0, rotY = 0, rotZ = 0;
 	int rotType;
-	list<cube>::iterator it;
+	list<Cube>::iterator it;
 	cout << "Welcome to the rotate cube function" << endl;
 	cout << "Type 1 for rotate at X axis" << endl << "Type 2 for rotate at Y axis" << endl
 		 << "Type 3 for rotate at Z axis" << endl;
@@ -1075,7 +1051,7 @@ void func() {
 	}
 
 	if (!myL.empty()) {
-		list<cube>::iterator it;
+		list<Cube>::iterator it;
 		/* Load neighbours and display them */
 		for (it = myL.begin(); it != myL.end(); ++it) {
 			cubeNum++;
@@ -1192,7 +1168,7 @@ void computeScore() {
 					Vertex[i][j][k].setScored(1);
 				}
 				if (!myL.empty()) {
-					list<cube>::iterator it;
+					list<Cube>::iterator it;
 					for (it = myL.begin(); it != myL.end(); ++it) {
 						cubeNum++;
 						//cout << "cubeNum :" << cubeNum << endl;
@@ -1371,113 +1347,16 @@ Keyboard combinations
 ==============================================================================*/
 //TODO na mpoyn se pinaka deikton se methodoys
 
+
+
+
 void keyboardFunc(GLubyte key, GLint xMouse, GLint yMouse) {
-	switch (key) {
-		case 27:
-			exit(EXIT_SUCCESS);
-			break;
-		case '1':
-			CamFlag = 1;
-			angleX = angleX + 10;
-			glRotatef(angleX, 1.f, 0.f, 0.f);
-			angleX = 0.0;
-			break;
-		case '2':
-			CamFlag = 1;
-			angleX = angleX - 10;
-			glRotatef(angleX, 1.f, 0.f, 0.f);
-			angleX = 0.0;
-			break;
-		case '3':
-			CamFlag = 1;
-			angleY = angleY + 10;
-			glRotatef(angleY, 0.f, 1.f, 0.f);
-			angleY = 0.0;
-			break;
-		case '4':
-			CamFlag = 1;
-			angleY = angleY - 10;
-			glRotatef(angleY, 0.f, 1.f, 0.f);
-			angleY = 0.0;
-			break;
-		case '5':
-			CamFlag = 1;
-			angleZ = angleZ + 10;;
-			glRotatef(angleZ, 0.f, 0.f, 1.f);
-			angleZ = 0.0;
-			break;
-		case '6':
-			CamFlag = 1;
-			angleZ = angleZ - 10;
-			glRotatef(angleZ, 0.f, 0.f, 1.f);
-			angleZ = 0.0;
-			break;
-		case 'b':
-			if ((PAUSE == 1) && (selectX < 14)) {
-				selectX++;
-			}
-			break;
-		case 'n':
-			if ((PAUSE == 1) && (selectX > 0)) {
-				selectX--;
-			}
-			break;
-		case 'g':
-			if ((PAUSE == 1) && (selectY < 14)) {
-				selectY++;
-			}
-			break;
-		case 'h':
-			if ((PAUSE == 1) && (selectY > 0)) {
-				selectY--;
-			}
-			break;
-		case 't':
-			if ((PAUSE == 1) && (selectZ < 14)) {
-				selectZ++;
-			}
-			break;
-		case 'y':
-			if ((PAUSE == 1) && (selectZ > 0)) {
-				selectZ--;
-			}
-			break;
-		case 's':
-			if (PAUSE == 0) {
-				PAUSE = 1;
-				alreadyMoved = 0;
-				listDisplayed = 0;
-				SCORE = 0;
-				computeScore();
-				ComputeScoreKoiloX();
-				ComputeScoreKoiloY();
-				ComputeScoreKoiloZ();
-				cout << "SCORE_final : " << SCORE << endl;
-				selectX = 0;
-				selectY = 0;
-				selectZ = 0;
-
-			} else {
-				PAUSE = 0;
-				selectX = -1;
-				selectY = -1;
-				selectZ = -1;
-
-			}
-			if (START == 1) {
-				moveDown(10);
-				START = 0;
-			}
-			break;
-		case '9':
-			glScalef(1.2, 1.2, 1.2);
-			break;
-		case '0':
-			glScalef(0.8, 0.8, 0.8);
-			break;
-		default:
-			break;
-	}
+    KeyboardCommands a;
+    if (key == 27) {
+        exit(EXIT_SUCCESS);
+    } else {
+        a.findCommand(key);
+    }
 	glutPostRedisplay();
 }
 void specialFunc(int key, int x= NULL, int y= NULL) {
@@ -1514,14 +1393,10 @@ int main(int argc, char **argv) {
 	run(argc, argv);
 	return 0;
 }
-void drawBitmapText(char* string, float x, float y, float z);
 void run(int &argc,char **argv) {
-	std::string string = "Hello World!";
-
-
+    KeyboardCommands aaa;
     glutInit(&argc, argv);                                                    // GLUT initialization
-	drawBitmapText(const_cast<char *>("Hello"), 0, 0, 0);
-	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);                    // Display Mode
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);                    // Display Mode
     glutInitWindowPosition(100, 250);
     glutInitWindowSize(600, 600);                                                // set window size
     glutCreateWindow("Cube Constructor - 3D");                                    // create Window
@@ -1533,12 +1408,7 @@ void run(int &argc,char **argv) {
     //glutFullScreen();                                                             //Fullscreen Display
     glutMainLoop();                                                                // run GLUT mainloop
 }
-void drawBitmapText(char* string, float x, float y, float z) {
 
-	char* c;
-	glRasterPos3f(x, y, z);
 
-	for (c = string; *c; ++c) {
-		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_10, *c);
-	}
-}
+
+

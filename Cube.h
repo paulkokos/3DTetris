@@ -6,7 +6,7 @@
 #define INC_3DTETRIS_CUBE_H
 
 
-class cube {
+class Cube {
 private:
     int colour;
     int positionX, positionY, positionZ;
@@ -15,7 +15,7 @@ private:
     int Scored;
     int id;
 public:
-    cube();
+    Cube();
 
     void setColour(int randNum);
 
